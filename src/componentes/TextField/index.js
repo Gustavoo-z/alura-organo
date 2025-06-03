@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
     margin: 24px 0;
 `
 
-const Label = styled.label`
+export const Label = styled.label`
     display: block;
     font-size: 24px;
     margin-bottom: 8px;
@@ -26,7 +26,7 @@ export const TextField = (props) => {
             <Label>
                 {props.label}
             </Label>
-            <Input placeholder={props.placeholder} />
+            <Input required={props.obrigatorio} placeholder={props.placeholder} />
         </Container>
     )
 }
