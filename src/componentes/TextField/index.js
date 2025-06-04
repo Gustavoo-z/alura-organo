@@ -21,12 +21,18 @@ const Input = styled.input`
 `
 
 export const TextField = (props) => {
+
     return (
         <Container>
             <Label>
                 {props.label}
             </Label>
-            <Input required={props.obrigatorio} placeholder={props.placeholder} />
+            <Input 
+                required={props.obrigatorio} 
+                placeholder={props.placeholder}
+                valor={props.valor}
+                onChange={evento => props.aoAlterado(evento.target.value)}
+            />
         </Container>
     )
 }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { TextField } from "../TextField";
 import { Dropdown } from "../Dropdown";
 import { Button } from "../Button";
+import { useState } from "react";
 
 const Container = styled.section`
     display: flex;
@@ -23,7 +24,7 @@ const FormTitulo = styled.h2`
     font-size: 32px;
 `
 
-export const Form = () => {
+export const Form = (props) => {
 
     const times = [
         "Programação",
@@ -35,17 +36,45 @@ export const Form = () => {
         "Inovação e Gestão"
     ]
 
+    const [nome, setNome] = useState("")
+    const [cargo, setCargo] = useState("")
+    const [imagem, setImagem] = useState("")
+    const [time, setTime] = useState(times[0])
+
     return(
         <Container>
             <FormContainer onSubmit={(e) => {
                 e.preventDefault()
-                console.log("Form enviado")
+                props.Colaborador({nome, cargo, imagem, time})
                 }}>
                 <FormTitulo>Preencha os dados para criar o card do colaborador</FormTitulo>
-                <TextField obrigatorio={true} label="Nome" placeholder="Digite seu nome"/>
-                <TextField obrigatorio={true} label="Cargo" placeholder="Digite seu cargo"/>
-                <TextField obrigatorio={true} label="Imagem" placeholder="Informe o endereço da imagem"/>
-                <Dropdown obrigatorio={true} label="Time" itens={times}></Dropdown>
+                <TextField 
+                    obrigatorio={true} 
+                    label="Nome" 
+                    placeholder="Digite seu nome"
+                    valor={nome}
+                    aoAlterado={valor => setNome(valor)}
+                />
+                <TextField 
+                    obrigatorio={true} 
+                    label="Cargo" 
+                    placeholder="Digite seu cargo"
+                    valor={cargo}
+                    aoAlterado={valor => setCargo(valor)}
+                />
+                <TextField 
+                    label="Imagem" 
+                    placeholder="Informe o endereço da imagem"
+                    valor={imagem}         
+                    aoAlterado={valor => setImagem(valor)}
+                 />
+                <Dropdown 
+                    obrigatorio={true} 
+                    label="Time" 
+                    itens={times}
+                    valor={time}
+                    aoAlterado={valor => setTime(valor)}
+                />
                 <Button>Criar Card</Button>
             </FormContainer>
         </Container>

@@ -17,7 +17,10 @@ export const Dropdown = (props) => {
             <Label>
                 {props.label}
             </Label>
-            <SelectDropdown required={props.obrigatorio}>
+            <SelectDropdown
+                value={props.valor}
+                onChange={evento => props.aoAlterado(evento.target.value)} 
+                required={props.obrigatorio}>
                 {props.itens.map(item => { 
                     return <option key={item}>{item}</option>
                 })}
