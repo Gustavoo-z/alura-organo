@@ -26,7 +26,7 @@ export const Team = (props) => {
         (props.colaboradores.length > 0) && <TeamContainer corSecundaria={props.corSecundaria}>
             <TeamTitle corPrimaria={props.corPrimaria}>{props.time}</TeamTitle>
             <TeamDiv>
-                {props.colaboradores.map(colaborador => <Card nome={colaborador.nome} imagem=   {colaborador.imagem} cargo={colaborador.cargo}></Card>)}
+                {props.colaboradores.map(colaborador => <Card nome={colaborador.nome} imagem=   {colaborador.imagem} cargo={colaborador.cargo} corPrimaria={props.corPrimaria} key={colaborador.nome}></Card>)}
             </TeamDiv>
         </TeamContainer>
     )

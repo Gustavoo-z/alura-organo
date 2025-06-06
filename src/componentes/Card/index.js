@@ -6,7 +6,7 @@ const CardContainer = styled.div`
 `
 
 const CardHeader = styled.div`
-    background-color:  #F0F0F0;
+    background-color:  ${props => props.corPrimaria};
     border-radius: 10px 10px 0px 0px;
     height: 92px;
 `
@@ -41,11 +41,11 @@ const CardSubtitle = styled.h5`
     padding: 0 16px;
 `
 
-export const Card = ({nome, imagem, cargo}) => {
+export const Card = ({nome, imagem, cargo, corPrimaria}) => {
     return (
         <CardContainer>
-            <CardHeader>
-                <CardImage src={imagem} alt={`Foto do ` + {nome}}/>
+            <CardHeader corPrimaria={corPrimaria}>
+                <CardImage src={imagem} alt={`Foto do ` + nome}/>
             </CardHeader>
             <CardFooter>
                 <CardTitle>{nome}</CardTitle>
