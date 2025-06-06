@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form } from './componentes/Form';
 import { Header } from './componentes/Header';
 import { Team } from './componentes/Team';
+import { Footer } from './componentes/Footer';
 
 export const App = () => {
 
@@ -54,16 +55,19 @@ export const App = () => {
     <div className='App'>
       <Header />
       <Form
-        Colaborador={colaboradorRecebido}   
+        times={times.map(time => time.nome)}
+        colaborador={colaboradorRecebido}
       />
       {times.map(time => 
       <Team 
         key={time.nome} 
         time={time.nome} 
         corPrimaria={time.corPrimaria} 
-        corSecundaria={time.corSecundaria}>
-      </Team>
+        corSecundaria={time.corSecundaria}
+        colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+      ></Team>
       )}
+      <Footer />
     </div>
   );
 }

@@ -30,7 +30,7 @@ export const TextField = (props) => {
             <Input 
                 required={props.obrigatorio} 
                 placeholder={props.placeholder}
-                valor={props.valor}
+                value={props.valor}
                 onChange={evento => props.aoAlterado(evento.target.value)}
             />
         </Container>
