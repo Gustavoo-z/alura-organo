@@ -4,6 +4,7 @@ import { Card } from "../Card";
 const TeamContainer = styled.section`
     text-align: center;
     padding: 32px 32px 64px 32px;
+    background-image: url("../../img/fundo.png");
     background-color: ${props => props.corSecundaria};
 `
 
@@ -26,7 +27,15 @@ export const Team = (props) => {
         (props.colaboradores.length > 0) && <TeamContainer corSecundaria={props.corSecundaria}>
             <TeamTitle corPrimaria={props.corPrimaria}>{props.time}</TeamTitle>
             <TeamDiv>
-                {props.colaboradores.map(colaborador => <Card nome={colaborador.nome} imagem=   {colaborador.imagem} cargo={colaborador.cargo} corPrimaria={props.corPrimaria} key={colaborador.nome}></Card>)}
+                {props.colaboradores.map(colaborador => 
+                    <Card 
+                        nome={colaborador.nome} 
+                        imagem={colaborador.imagem} 
+                        cargo={colaborador.cargo} 
+                        corPrimaria={props.corPrimaria} 
+                        key={colaborador.nome}
+                        aoDeletar={props.aoDeletar}>
+                    </Card>)}
             </TeamDiv>
         </TeamContainer>
     )

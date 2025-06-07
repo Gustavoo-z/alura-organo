@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const CardContainer = styled.div`
+    position: relative;
     width: 262px;
     height: 272px;
 `
@@ -41,9 +43,19 @@ const CardSubtitle = styled.h5`
     padding: 0 16px;
 `
 
-export const Card = ({nome, imagem, cargo, corPrimaria}) => {
+const IconClose = styled(AiFillCloseCircle)`
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+`
+
+export const Card = ({nome, imagem, cargo, corPrimaria, aoDeletar}) => {
     return (
         <CardContainer>
+            <IconClose onClick={aoDeletar} />
             <CardHeader corPrimaria={corPrimaria}>
                 <CardImage src={imagem} alt={`Foto do ` + nome}/>
             </CardHeader>
