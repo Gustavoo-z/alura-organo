@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Card } from "../Card";
 
 const TeamContainer = styled.section`
+    position: relative;
     text-align: center;
     padding: 32px 32px 64px 32px;
     background-image: url("../../img/fundo.png");
@@ -22,10 +23,17 @@ const TeamTitle = styled.h3`
     margin-top: 0;
 `
 
+const InputColor = styled.input`
+    right: 50px;
+    top: 40px;
+    position: absolute;
+`
+
 export const Team = (props) => {
     return (
         (props.colaboradores.length > 0) && <TeamContainer corSecundaria={props.corSecundaria}>
             <TeamTitle corPrimaria={props.corPrimaria}>{props.time}</TeamTitle>
+            <InputColor type="color" value={props.corPrimaria} onChange={e => props.mudarCor(e.target.value, props.time)}></InputColor> 
             <TeamDiv>
                 {props.colaboradores.map(colaborador => 
                     <Card 

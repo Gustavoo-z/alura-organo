@@ -6,7 +6,7 @@ import { Footer } from './componentes/Footer';
 
 export const App = () => {
 
-    const times = [
+    const [times, setTimes] = useState([
       {
         nome: "Programação",
         corPrimaria: "#57C278",
@@ -42,7 +42,7 @@ export const App = () => {
         corPrimaria: "#FF8A29",
         corSecundaria: "#FFEEDF",
       }
-    ]
+    ])
 
     const inicial = [
     {
@@ -201,6 +201,15 @@ export const App = () => {
     console.log('Deletar Colaborador');
   }
 
+  function mudarCorTime(cor, time) {
+    setTimes (times.map(timeAtual => {
+      if (timeAtual.nome === time) {
+        timeAtual.corPrimaria = cor
+      }
+      return timeAtual
+    })) 
+  }
+
   return (
 
     <div className='App'>
@@ -210,13 +219,14 @@ export const App = () => {
         colaborador={colaboradorRecebido}
       />
       {times.map(time => 
-      <Team 
+      <Team
         key={time.nome} 
         time={time.nome} 
         corPrimaria={time.corPrimaria} 
         corSecundaria={time.corSecundaria}
         colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
         aoDeletar={deletarColaborador}
+        mudarCor={mudarCorTime}
       ></Team>
       )}
       <Footer />
