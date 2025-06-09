@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const CardContainer = styled.div`
     position: relative;
@@ -8,7 +8,7 @@ const CardContainer = styled.div`
 `
 
 const CardHeader = styled.div`
-    background-color:  ${props => props.corPrimaria};
+    background-color: ${props => props.cor};
     border-radius: 10px 10px 0px 0px;
     height: 92px;
 `
@@ -41,6 +41,7 @@ const CardSubtitle = styled.h5`
     line-height: 22px;
     color: #212121;
     padding: 0 16px;
+    margin: 16px 16px 8px 16px;
 `
 
 const IconClose = styled(AiFillCloseCircle)`
@@ -52,16 +53,42 @@ const IconClose = styled(AiFillCloseCircle)`
     cursor: pointer;
 `
 
-export const Card = ({nome, imagem, cargo, corPrimaria, aoDeletar}) => {
+const IconHeart = styled(AiFillHeart)`
+    width: 25px;
+    height: 25px;
+    color: #FF0000;
+    cursor: pointer;
+`
+
+const IconHeartOutline = styled(AiOutlineHeart)`
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+`
+
+export const Card = ({nome, imagem, cargo, cor, id, favorito, aoDeletar, aoFavoritar}) => {
+
+    function favoritar() {
+        aoFavoritar(id)
+    }
+
     return (
         <CardContainer>
-            <IconClose onClick={aoDeletar} />
-            <CardHeader corPrimaria={corPrimaria}>
+            <IconClose 
+                onClick={() => aoDeletar(id)}                 
+            />
+            <CardHeader cor={cor}>
                 <CardImage src={imagem} alt={`Foto do ` + nome}/>
             </CardHeader>
             <CardFooter>
                 <CardTitle>{nome}</CardTitle>
                 <CardSubtitle>{cargo}</CardSubtitle>
+                    <div>
+                        {favorito
+                            ? <IconHeart onClick={favoritar} />
+                            : <IconHeartOutline onClick={favoritar} />
+                        }
+                    </div>
             </CardFooter>
         </CardContainer>
     )

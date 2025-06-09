@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TextField } from "../TextField";
+import { Field } from "../Field";
 import { Dropdown } from "../Dropdown";
 import { Button } from "../Button";
 import { useState } from "react";
@@ -7,15 +7,17 @@ import { useState } from "react";
 const Container = styled.section`
     display: flex;
     justify-content: center;
-    margin: 80px 0
+    margin: 80px 0;
+    flex-wrap: wrap;
 `
 
 const FormContainer = styled.form`
-    width: 80%;
+    flex: 1;
     background-color: #f2f2f2;
     border-radius: 20px;
     padding: 36px 64px;
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.08);
+    margin: 32px;
 `
 
 const FormTitulo = styled.h2`
@@ -31,6 +33,9 @@ export const Form = (props) => {
     const [imagem, setImagem] = useState("")
     const [time, setTime] = useState(props.times[0])
 
+    const [nomeTime, setNomeTime] = useState("")
+    const [corTime, setCorTime] = useState("")
+
     const aoAdicionarColaborador = (e) => {
         e.preventDefault()
         props.colaborador({nome, cargo, imagem, time})
@@ -44,21 +49,21 @@ export const Form = (props) => {
         <Container>
             <FormContainer onSubmit={aoAdicionarColaborador}>
                 <FormTitulo>Preencha os dados para criar o card do colaborador</FormTitulo>
-                <TextField 
+                <Field 
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Digite seu nome"
                     valor={nome}
                     aoAlterado={valor => setNome(valor)}
                 />
-                <TextField 
+                <Field 
                     obrigatorio={true} 
                     label="Cargo" 
                     placeholder="Digite seu cargo"
                     valor={cargo}
                     aoAlterado={valor => setCargo(valor)}
                 />
-                <TextField 
+                <Field 
                     label="Imagem" 
                     placeholder="Informe o endereço da imagem"
                     valor={imagem}         
@@ -72,6 +77,30 @@ export const Form = (props) => {
                     aoAlterado={valor => setTime(valor)}
                 />
                 <Button>Criar Card</Button>
+            </FormContainer>
+            <FormContainer onSubmit={(evento) => {
+                evento.preventDefault()
+                props.criarNovoTime({ nomeTime, corTime })
+                setNomeTime("")
+                setCorTime("")
+            }}>
+                <FormTitulo>Preencha os dados para criar um novo time</FormTitulo>
+                <Field 
+                    obrigatorio
+                    label="Nome" 
+                    placeholder="Digite o nome do time"
+                    valor={nomeTime}
+                    aoAlterado={valor => setNomeTime(valor)}
+                />
+                <Field 
+                    type="color"
+                    obrigatorio
+                    label="Cor" 
+                    placeholder="Digite a cor do time"
+                    valor={corTime}         
+                    aoAlterado={valor => setCorTime(valor)}
+                 />
+                <Button>Criar Time</Button>
             </FormContainer>
         </Container>
     )

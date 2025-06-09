@@ -18,19 +18,26 @@ const Input = styled.input`
     font-size: 24px;
     padding: 24px;
     box-sizing: border-box;
+
+    ${(props) =>
+    props.type === "color" && `
+    padding: 5px 24px;
+    height: 50px;
+  `}
 `
 
-export const TextField = (props) => {
+export const Field = (props) => {
 
     return (
         <Container>
             <Label>
                 {props.label}
             </Label>
-            <Input 
+            <Input
+                type={props.type || "text"} 
                 required={props.obrigatorio} 
                 placeholder={props.placeholder}
-                value={props.valor}
+                value={props.valor} 
                 onChange={evento => props.aoAlterado(evento.target.value)}
             />
         </Container>

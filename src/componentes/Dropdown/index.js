@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container, Label } from "../TextField";
+import { Container, Label } from "../Field";
 
 const SelectDropdown = styled.select`
     background-color: #FFF;
