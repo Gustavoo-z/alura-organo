@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Backend - JSON Server
+
+This project uses **JSON Server** to simulate a REST API and provide data for the frontend.
+
+## 🚀 How to run the backend
+
+### 1. Install dependencies
+
+If you haven’t installed **JSON Server**, run:
+
+```sh
+npm install -g json-server
+
+2. Navigate to the backend folder
+Before starting the server, make sure you're in the correct directory:
+
+sh
+cd backend
+
+3. Start JSON Server
+Run the following command to start the server on port 8080, watching the pessoas.json file:
+
+sh
+json-server --watch pessoas.json -p 8080
+
+4. Access the API
+Once the server is running, you can access the endpoints via browser or fetch requests:
+
+GET http://localhost:8080/pessoas
+```
