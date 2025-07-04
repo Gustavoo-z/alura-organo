@@ -56,7 +56,6 @@ export const App = () => {
           id: uuidv4(),
         }));
 
-        console.log("Dados processados:", colaboradoresProcessados);
         dispatch({ type: ACTIONS.SET_ALL, payload: colaboradoresProcessados });
       })
       .catch((error) => console.error("Erro ao buscar colaboradores:", error));
@@ -98,7 +97,10 @@ export const App = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header
+        enderecoImagem="./img/banner.png"
+        textoAlternativo="O banner principal da página"
+      />
       <Form
         times={times.map((time) => time.nome)}
         colaborador={colaboradorRecebido}

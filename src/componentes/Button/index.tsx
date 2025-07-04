@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const StyledButton = styled.button`
     background-color: #6278f7;
@@ -16,7 +17,11 @@ const StyledButton = styled.button`
     }
 `
 
-export const Button = (props) => {
+interface ButtonProps {
+    children: React.ReactElement
+}
+
+export const Button = (props: ButtonProps) => {
     return (
         <StyledButton>
             {props.children}
