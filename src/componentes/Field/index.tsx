@@ -26,19 +26,28 @@ const Input = styled.input`
   `}
 `
 
-export const Field = (props) => {
+interface FieldProps {
+    label: string;
+    obrigatorio: boolean;
+    placeholder?: string;
+    type?: string;
+    valor: string;
+    aoAlterado: (valor: string) => void;
+}
+
+export const Field = ({ aoAlterado, label, obrigatorio, placeholder, type, valor }: FieldProps) => {
 
     return (
         <Container>
             <Label>
-                {props.label}
+                {label}
             </Label>
             <Input
-                type={props.type || "text"} 
-                required={props.obrigatorio} 
-                placeholder={props.placeholder}
-                value={props.valor} 
-                onChange={evento => props.aoAlterado(evento.target.value)}
+                type={type || "text"} 
+                required={obrigatorio} 
+                placeholder={placeholder}
+                value={valor} 
+                onChange={evento => aoAlterado(evento.target.value)}
             />
         </Container>
     )
