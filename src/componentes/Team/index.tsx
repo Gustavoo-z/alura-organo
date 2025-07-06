@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import hexToRgba from 'hex-to-rgba';
-import { IColaborador } from "../../shared/interfaces/IColaborador";
+import { IColaboradorCompleto } from "../../shared/interfaces/IColaborador";
 import { Card } from "../Card";
 
 const TeamContainer = styled.section<CorProps>`
@@ -38,7 +38,7 @@ interface TeamProps {
     mudarCor: (cor: string, id: number) => void
     aoDeletar: (id: number) => void
     aoFavoritar: (id: number) => void
-    colaboradores: IColaborador[]
+    colaboradores: IColaboradorCompleto[]
 }
 
 export interface CorProps {

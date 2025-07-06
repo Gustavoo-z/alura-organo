@@ -1,7 +1,13 @@
-export interface IColaborador {
+export interface IColaboradorBase {
     nome: string
     cargo: string
     imagem: string
-    favorito: boolean
-    id: number
+    favorito?: boolean
+    id?: number
+    time?: string
+}
+
+export interface IColaboradorCompleto extends IColaboradorBase {
+  id: number
+  favorito: boolean
 }

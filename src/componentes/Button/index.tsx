@@ -18,7 +18,7 @@ const StyledButton = styled.button`
 `
 
 interface ButtonProps {
-    children: React.ReactElement
+    children: React.ReactElement | string;
 }
 
 export const Button = (props: ButtonProps) => {

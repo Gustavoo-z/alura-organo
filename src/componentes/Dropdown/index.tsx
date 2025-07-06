@@ -11,7 +11,15 @@ const SelectDropdown = styled.select`
     box-sizing: border-box;
 `
 
-export const Dropdown = (props) => {
+interface DropdownProps {
+    label: string;
+    valor: string;
+    itens: string[];
+    aoAlterado: (valor: string) => void;
+    obrigatorio?: boolean;
+}
+
+export const Dropdown = (props: DropdownProps) => {
     return (
         <Container>
             <Label>

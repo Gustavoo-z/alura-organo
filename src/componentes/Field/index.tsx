@@ -28,14 +28,14 @@ const Input = styled.input`
 
 interface FieldProps {
     label: string;
-    obrigatorio: boolean;
+    obrigatorio?: boolean;
     placeholder?: string;
     type?: string;
     valor: string;
     aoAlterado: (valor: string) => void;
 }
 
-export const Field = ({ aoAlterado, label, obrigatorio, placeholder, type, valor }: FieldProps) => {
+export const Field = ({ aoAlterado, label, placeholder, type, valor, obrigatorio = false }: FieldProps) => {
 
     return (
         <Container>

@@ -3,6 +3,8 @@ import { Field } from "../Field";
 import { Dropdown } from "../Dropdown";
 import { Button } from "../Button";
 import { useState } from "react";
+import { IColaboradorBase } from "../../shared/interfaces/IColaborador";
+import { CorProps } from "../Team";
 
 const Container = styled.section`
     display: flex;
@@ -20,7 +22,7 @@ const FormContainer = styled.form`
     margin: 32px;
 `
 
-const FormTitulo = styled.h2`
+const FormTitulo = styled.h2<CorProps>`
     font-family: "Prata", serif;
     font-weight: 300;
     font-size: 32px;
@@ -47,7 +49,15 @@ const ButtonFormImage = styled.img`
     }
 `
 
-export const Form = (props) => {
+interface FormProps {
+    times: string[];
+    colaborador: (colaborador: IColaboradorBase) => void;
+    aoDeletar: (id: number) => void
+    criarNovoTime: (time: { nomeTime: string; corTime: string }) => void;
+    aoFavoritar: (id: number) => void;
+}
+
+export const Form = (props: FormProps) => {
 
     const [nome, setNome] = useState("")
     const [cargo, setCargo] = useState("")
@@ -57,7 +67,7 @@ export const Form = (props) => {
     const [nomeTime, setNomeTime] = useState("")
     const [corTime, setCorTime] = useState("")
 
-    const aoAdicionarColaborador = (e) => {
+    const aoAdicionarColaborador = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         props.colaborador({nome, cargo, imagem, time})
         setNome("")
@@ -67,7 +77,7 @@ export const Form = (props) => {
     }
 
     const manipularContainer = () => {
-        const container = document.querySelector('.container');
+        const container = document.querySelector('.container') as HTMLDivElement;
         if (container.style.display === 'none' || container.style.display === '') {
             container.style.display = 'flex';
         } else {
@@ -79,7 +89,7 @@ export const Form = (props) => {
         <>
         <Container className="container" style={{display: "flex"}}>
             <FormContainer onSubmit={aoAdicionarColaborador}>
-                <FormTitulo>Preencha os dados para criar o card do colaborador</FormTitulo>
+                <FormTitulo cor="">Preencha os dados para criar o card do colaborador</FormTitulo>
                 <Field 
                     obrigatorio={true} 
                     label="Nome" 
@@ -94,7 +104,7 @@ export const Form = (props) => {
                     valor={cargo}
                     aoAlterado={valor => setCargo(valor)}
                 />
-                <Field 
+                <Field
                     label="Imagem" 
                     placeholder="Informe o endereço da imagem"
                     valor={imagem}         
@@ -115,7 +125,7 @@ export const Form = (props) => {
                 setNomeTime("")
                 setCorTime("")
             }}>
-                <FormTitulo>Preencha os dados para criar um novo time</FormTitulo>
+                <FormTitulo cor="">Preencha os dados para criar um novo time</FormTitulo>
                 <Field 
                     obrigatorio
                     label="Nome" 
@@ -135,7 +145,7 @@ export const Form = (props) => {
             </FormContainer>
         </Container>
         <ButtonForm>
-            <FormTitulo style={{color: "#6278F7", borderBottom: "2px solid #6278F7", display: "inline-block", paddingBottom: "8px", marginTop: "60px"}}>Minha Organização:</FormTitulo>
+            <FormTitulo cor="" style={{color: "#6278F7", borderBottom: "2px solid #6278F7", display: "inline-block", paddingBottom: "8px", marginTop: "60px"}}>Minha Organização:</FormTitulo>
             <ButtonFormImage onClick={manipularContainer} src="../../img/ButtonForm.png" alt="ButtonForm"></ButtonFormImage>
         </ButtonForm>
         </>
