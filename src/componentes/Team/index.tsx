@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { Card } from "../Card";
 import hexToRgba from 'hex-to-rgba';
+import { IColaborador } from "../../shared/interfaces/IColaborador";
+import { Card } from "../Card";
 
-const TeamContainer = styled.section`
+const TeamContainer = styled.section<CorProps>`
     position: relative;
     text-align: center;
     padding: 32px 32px 64px 32px;
@@ -16,7 +17,7 @@ const TeamDiv = styled.div`
     flex-wrap: wrap;
 `
 
-const TeamTitle = styled.h3`
+const TeamTitle = styled.h3<CorProps>`
     font-size: 32px;
     border-bottom: 4px solid ${props => props.cor};
     display: inline-block;
@@ -30,7 +31,21 @@ const InputColor = styled.input`
     position: absolute;
 `
 
-export const Team = (props) => {
+interface TeamProps {
+    cor: string
+    time: string
+    id: number
+    mudarCor: (cor: string, id: number) => void
+    aoDeletar: (id: number) => void
+    aoFavoritar: (id: number) => void
+    colaboradores: IColaborador[]
+}
+
+export interface CorProps {
+  cor: string;
+}
+
+export const Team = (props: TeamProps) => {
     return (
         (props.colaboradores.length > 0) && 
         <TeamContainer cor={props.cor}>
@@ -38,7 +53,7 @@ export const Team = (props) => {
             <InputColor type="color" value={props.cor} onChange={e => props.mudarCor(e.target.value, props.id)}></InputColor> 
             <TeamDiv>
                 {props.colaboradores.map(colaborador => 
-                    <Card 
+                    <Card
                         nome={colaborador.nome} 
                         imagem={colaborador.imagem} 
                         cargo={colaborador.cargo} 
