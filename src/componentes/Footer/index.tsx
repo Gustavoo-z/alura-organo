@@ -8,7 +8,7 @@ const FooterContainer = styled.footer`
     background-image: url("../../img/fundo.png");
     background-size: cover;
     padding: 80px;
-    aling-items: center;
+    align-items: center;
 `
 
 const DivRedesSociais = styled.div`

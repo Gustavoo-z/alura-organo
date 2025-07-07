@@ -34,8 +34,8 @@ const InputColor = styled.input`
 interface TeamProps {
     cor: string
     time: string
-    id: number
-    mudarCor: (cor: string, id: number) => void
+    id: string  
+    mudarCor: (cor: string, id: string) => void
     aoDeletar: (id: number) => void
     aoFavoritar: (id: number) => void
     colaboradores: IColaboradorCompleto[]
@@ -47,7 +47,7 @@ export interface CorProps {
 
 export const Team = (props: TeamProps) => {
     return (
-        (props.colaboradores.length > 0) && 
+        (props.colaboradores.length > 0) ? 
         <TeamContainer cor={props.cor}>
             <TeamTitle cor={props.cor}>{props.time}</TeamTitle>
             <InputColor type="color" value={props.cor} onChange={e => props.mudarCor(e.target.value, props.id)}></InputColor> 
@@ -67,5 +67,6 @@ export const Team = (props: TeamProps) => {
                     </Card>)}
             </TeamDiv>
         </TeamContainer>
+        : <></>
     )
 }

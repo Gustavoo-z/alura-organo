@@ -2,9 +2,10 @@ import { useEffect, useReducer, useState } from "react";
 import { Form } from "./componentes/Form";
 import { Header } from "./componentes/Header";
 import { Team } from "./componentes/Team";
-import { Footer } from "./componentes/Footer";
 import { v4 as uuidv4 } from "uuid";
 import colaboradoresReducer, { ACTIONS } from "./reducerColaboradores";
+import { IColaboradorBase, IColaboradorCompleto } from "./shared/interfaces/IColaborador";
+import { Footer } from "./componentes/Footer";
 
 export const App = () => {
   const [times, setTimes] = useState([
@@ -51,7 +52,7 @@ export const App = () => {
     fetch(`http://localhost:8080/pessoas`)
       .then((response) => response.json())
       .then((data) => {
-        const colaboradoresProcessados = data.map((colaborador) => ({
+        const colaboradoresProcessados = data.map((colaborador: IColaboradorBase) => ({
           ...colaborador,
           id: uuidv4(),
         }));
@@ -61,19 +62,19 @@ export const App = () => {
       .catch((error) => console.error("Erro ao buscar colaboradores:", error));
   }, []);
 
-  const colaboradorRecebido = (colaborador) => {
+  const colaboradorRecebido = (colaborador: IColaboradorBase) => {
     dispatch({ type: ACTIONS.ADD, payload: colaborador });
   };
 
-  function deletarColaborador(id) {
+  function deletarColaborador(id: number) {
     dispatch({ type: ACTIONS.DELETE, payload: id });
   }
 
-  function resolverFavorito(id) {
+  function resolverFavorito(id: number) {
     dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: id });
   }
 
-  function mudarCorTime(cor, id) {
+  function mudarCorTime(cor: string, id: string) {
     setTimes(
       times.map((time) => {
         if (time.id === id) {
@@ -113,7 +114,7 @@ export const App = () => {
           id={time.id}
           cor={time.cor}
           colaboradores={colaboradores.filter(
-            (colaborador) => colaborador.time === time.nome
+            (colaborador): colaborador is IColaboradorCompleto => colaborador.time === time.nome
           )}
           aoDeletar={deletarColaborador}
           aoFavoritar={resolverFavorito}

@@ -52,9 +52,9 @@ const ButtonFormImage = styled.img`
 interface FormProps {
     times: string[];
     colaborador: (colaborador: IColaboradorBase) => void;
-    aoDeletar: (id: number) => void
+    aoDeletar?: (id: number) => void
+    aoFavoritar?: (id: number) => void;
     criarNovoTime: (time: { nomeTime: string; corTime: string }) => void;
-    aoFavoritar: (id: number) => void;
 }
 
 export const Form = (props: FormProps) => {
