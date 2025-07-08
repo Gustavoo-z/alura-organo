@@ -5,6 +5,7 @@ export interface IColaboradorBase {
     favorito?: boolean
     id?: number
     time?: string
+    data: string
 }
 
 export interface IColaboradorCompleto extends IColaboradorBase {

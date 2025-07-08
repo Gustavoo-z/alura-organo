@@ -73,6 +73,7 @@ interface CardProps {
   cargo: string;
   cor: string;
   id: number;
+  data: string;
   favorito: boolean;
   aoDeletar: (id: number) => void;
   aoFavoritar: (id: number) => void;
@@ -84,6 +85,7 @@ export const Card = ({
   cargo,
   cor,
   id,
+  data,
   favorito,
   aoDeletar,
   aoFavoritar,
@@ -101,6 +103,7 @@ export const Card = ({
       <CardFooter>
         <CardTitle>{nome}</CardTitle>
         <CardSubtitle>{cargo}</CardSubtitle>
+        <CardSubtitle>{new Date(data).toLocaleDateString()}</CardSubtitle>
         <div>
           {favorito ? (
             <IconHeart onClick={favoritar} />

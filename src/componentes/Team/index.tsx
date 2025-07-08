@@ -9,6 +9,7 @@ const TeamContainer = styled.section<CorProps>`
     padding: 32px 32px 64px 32px;
     background-image: url("../../img/fundo.png");
     background-color: ${props => hexToRgba(props.cor, '0.6')};
+    height: 400px;
 `
 
 const TeamDiv = styled.div`
@@ -34,7 +35,7 @@ const InputColor = styled.input`
 interface TeamProps {
     cor: string
     time: string
-    id: string  
+    id: string
     mudarCor: (cor: string, id: string) => void
     aoDeletar: (id: number) => void
     aoFavoritar: (id: number) => void
@@ -63,6 +64,7 @@ export const Team = (props: TeamProps) => {
                         aoDeletar={props.aoDeletar}
                         aoFavoritar={props.aoFavoritar}
                         favorito={colaborador.favorito}
+                        data={colaborador.data}
                         >
                     </Card>)}
             </TeamDiv>

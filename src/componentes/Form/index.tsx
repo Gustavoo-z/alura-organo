@@ -63,16 +63,18 @@ export const Form = (props: FormProps) => {
     const [cargo, setCargo] = useState("")
     const [imagem, setImagem] = useState("")
     const [time, setTime] = useState(props.times[0])
+    const [data, setData] = useState("")
 
     const [nomeTime, setNomeTime] = useState("")
     const [corTime, setCorTime] = useState("")
 
     const aoAdicionarColaborador = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        props.colaborador({nome, cargo, imagem, time})
+        props.colaborador({nome, cargo, imagem, time, data})
         setNome("")
         setCargo("")
         setImagem("")
+        setData("")
         setTime(props.times[0])
     }
 
@@ -109,6 +111,14 @@ export const Form = (props: FormProps) => {
                     placeholder="Informe o endereço da imagem"
                     valor={imagem}         
                     aoAlterado={valor => setImagem(valor)}
+                 />
+                 <Field
+                    label="Data de entrada" 
+                    placeholder=""
+                    valor={data}         
+                    aoAlterado={valor => setData(valor)}
+                    type="date"
+                    obrigatorio
                  />
                 <Dropdown 
                     obrigatorio={true} 

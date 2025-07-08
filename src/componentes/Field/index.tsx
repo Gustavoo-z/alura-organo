@@ -30,12 +30,12 @@ interface FieldProps {
     label: string;
     obrigatorio?: boolean;
     placeholder?: string;
-    type?: string;
+    type?: "text" | "date" | "color";
     valor: string;
     aoAlterado: (valor: string) => void;
 }
 
-export const Field = ({ aoAlterado, label, placeholder, type, valor, obrigatorio = false }: FieldProps) => {
+export const Field = ({ aoAlterado, label, placeholder, valor, obrigatorio = false, type = "text" }: FieldProps) => {
 
     return (
         <Container>
@@ -43,7 +43,7 @@ export const Field = ({ aoAlterado, label, placeholder, type, valor, obrigatorio
                 {label}
             </Label>
             <Input
-                type={type || "text"} 
+                type={type} 
                 required={obrigatorio} 
                 placeholder={placeholder}
                 value={valor} 
